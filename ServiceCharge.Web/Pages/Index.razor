@@ -1,0 +1,23 @@
+﻿@page "/"
+
+<h1>Capgemini Cafe</h1>
+
+<h3>Menu</h3>
+
+<ul>
+    @foreach (var item in Data.Menu.MenuItems)
+    {
+        <li>@($"{item.Name} - {item.ItemTemp.ToString()} - ${item.Price}") <button @onclick="@(()=>_bill.MenuItems.Add(item))">Add</button></li>
+    }
+
+</ul>
+
+<h3>Order</h3>
+<ul>
+    @foreach (var item in _bill.MenuItems)
+    {
+        <li>@($"{item.Name} - {item.ItemTemp.ToString()} - ${item.Price}") <button @onclick="@(()=>_bill.MenuItems.Remove(item))">Remove</button></li>
+    }
+</ul>
+
+<h4>Total: <span>$@_bill.Total</span></h4>
